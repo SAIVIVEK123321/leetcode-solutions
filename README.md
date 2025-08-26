@@ -41,7 +41,7 @@ ProblemNumber.Problem_Title/
 ## 📊 Progress Tracker
 | #   | Problem Title | Difficulty | Solutions |
 |-----|--------------|------------|-----------|
-| 3000 | Maximum Area of Longest Diagonal Rectangle | Easy | [Link](./3000.Maximum_Area_of_Longest_Diagonal_Rectangle/README.md) |
+| 3000 | Maximum Area of Longest Diagonal Rectangle | Easy | [Link](./3000.Maximum_Area_of_Longest_Diagonal_Rectangle) |
 
 ---
 

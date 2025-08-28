@@ -1,0 +1,230 @@
+You are given an n x n square matrix of integers grid. Return the matrix such that:
+
+The diagonals in the bottom-left triangle (including the middle diagonal) are sorted in non-increasing order.
+The diagonals in the top-right triangle are sorted in non-decreasing order.
+ 
+
+Example 1:
+
+Input: grid = [[1,7,3],[9,8,2],[4,5,6]]
+
+Output: [[8,2,3],[9,6,7],[4,5,1]]
+
+Explanation:
+grid = [[1,7,3],
+        [9,8,2],
+        [4,6,5]]
+[[1,2,3],
+ [9,7,6],
+ [8,5,4]]
+The diagonals with a black arrow (bottom-left triangle) should be sorted in non-increasing order:
+
+[1, 8, 6] becomes [8, 6, 1].
+[9, 5] and [4] remain unchanged.
+The diagonals with a blue arrow (top-right triangle) should be sorted in non-decreasing order:
+
+[7, 2] becomes [2, 7].
+[3] remains unchanged.
+Example 2:
+
+Input: grid = [[0,1],[1,2]]
+
+Output: [[2,1],[
+grid = [[0,1],
+        [1,2]]
+[[2,1],
+ [1,0]]
+
+The diagonals with a black arrow must be non-increasing, so [0, 2] is changed to [2, 0]. The other diagonals are already in the correct order.
+
+Example 3:
+
+Input: grid = [[1]]
+
+Output: [[1]]
+
+Explanation:
+
+Diagonals with exactly one element are already in order, so no changes are needed.
+
+ 
+
+Constraints:
+
+grid.length == grid[i].length == n
+1 <= n <= 10
+-105 <= grid[i][j] <= 105
+
+# 🚀 LeetCode Solutions
+
+This repository contains my solutions to **LeetCode problems** with explanations in multiple languages.  
+Each problem includes the **description**, **approach**, and solutions in **Python, Java, C++, Go, TypeScript, Rust, C#**, and more.
+
+---
+
+## 📂 Problems
+
+### 3000. Maximum Area of Longest Diagonal Rectangle
+📌 [Problem Link](https://leetcode.com/problems/maximum-area-of-longest-diagonal-rectangle/)  
+📖 Source: Weekly Contest 379 Q1  
+
+---
+
+### 📝 Description
+You are given a 2D 0-indexed integer array `dimensions`.  
+
+- For all indices `i`, `0 <= i < dimensions.length`,  
+  `dimensions[i][0]` represents the **length** and `dimensions[i][1]` represents the **width** of rectangle `i`.
+
+Return the **area of the rectangle having the longest diagonal**.  
+If there are multiple rectangles with the same longest diagonal, return the one with the **maximum area**.
+
+---
+
+### 💡 Examples
+
+**Example 1**
+
+---
+
+### 🔎 Solution Idea
+- Use **Pythagoras theorem** → diagonal² = `l² + w²`.
+- No need to compute square root (comparing squared diagonals is enough).
+- Track:
+  - Maximum diagonal length (squared).
+  - Area of rectangle with that diagonal.
+- If diagonals are equal → take rectangle with **maximum area**.
+
+⏱ Time Complexity: **O(n)**  
+💾 Space Complexity: **O(1)**  
+
+---
+
+## 💻 Solutions
+
+### 🐍 Python
+```python
+from typing import List
+
+class Solution:
+    def areaOfMaxDiagonal(self, dimensions: List[List[int]]) -> int:
+        ans = mx = 0
+        for l, w in dimensions:
+            t = l**2 + w**2
+            if mx < t:
+                mx = t
+                ans = l * w
+            elif mx == t:
+                ans = max(ans, l * w)
+        return ans
+
+☕ Java
+class Solution {
+    public int areaOfMaxDiagonal(int[][] dimensions) {
+        int ans = 0, mx = 0;
+        for (var d : dimensions) {
+            int l = d[0], w = d[1];
+            int t = l * l + w * w;
+            if (mx < t) {
+                mx = t;
+                ans = l * w;
+            } else if (mx == t) {
+                ans = Math.max(ans, l * w);
+            }
+        }
+        return ans;
+    }
+}
+⚡ C++
+class Solution {
+public:
+    int areaOfMaxDiagonal(vector<vector<int>>& dimensions) {
+        int ans = 0, mx = 0;
+        for (auto& d : dimensions) {
+            int l = d[0], w = d[1];
+            int t = l * l + w * w;
+            if (mx < t) {
+                mx = t;
+                ans = l * w;
+            } else if (mx == t) {
+                ans = max(ans, l * w);
+            }
+        }
+        return ans;
+    }
+};
+🐹 Go
+func areaOfMaxDiagonal(dimensions [][]int) (ans int) {
+    mx := 0
+    for _, d := range dimensions {
+        l, w := d[0], d[1]
+        t := l*l + w*w
+        if mx < t {
+            mx = t
+            ans = l * w
+        } else if mx == t {
+            ans = max(ans, l*w)
+        }
+    }
+    return
+}
+
+func max(a, b int) int {
+    if a > b {
+        return a
+    }
+    return b
+}
+
+🌐 TypeScript
+function areaOfMaxDiagonal(dimensions: number[][]): number {
+    let [ans, mx] = [0, 0];
+    for (const [l, w] of dimensions) {
+        const t = l * l + w * w;
+        if (mx < t) {
+            mx = t;
+            ans = l * w;
+        } else if (mx === t) {
+            ans = Math.max(ans, l * w);
+        }
+    }
+    return ans;
+}
+🦀 Rust
+impl Solution {
+    pub fn area_of_max_diagonal(dimensions: Vec<Vec<i32>>) -> i32 {
+        let mut ans = 0;
+        let mut mx = 0;
+        for d in dimensions {
+            let l = d[0];
+            let w = d[1];
+            let t = l * l + w * w;
+            if mx < t {
+                mx = t;
+                ans = l * w;
+            } else if mx == t {
+                ans = ans.max(l * w);
+            }
+        }
+        ans
+    }
+}
+
+🔷 C#
+public class Solution {
+    public int AreaOfMaxDiagonal(int[][] dimensions) {
+        int ans = 0, mx = 0;
+        foreach (var d in dimensions) {
+            int l = d[0], w = d[1];
+            int t = l * l + w * w;
+            if (mx < t) {
+                mx = t;
+                ans = l * w;
+            } else if (mx == t) {
+                ans = Math.Max(ans, l * w);
+            }
+        }
+        return ans;
+    }
+}
+

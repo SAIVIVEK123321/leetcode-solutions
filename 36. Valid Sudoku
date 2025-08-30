@@ -1,0 +1,175 @@
+# 🧩 LeetCode 36. Valid Sudoku
+
+## Question
+Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+
+1. Each row must contain the digits 1-9 without repetition.  
+2. Each column must contain the digits 1-9 without repetition.  
+3. Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.  
+
+**Note:**
+- A Sudoku board (partially filled) could be valid but is not necessarily solvable.  
+- Only the filled cells need to be validated according to the mentioned rules.  
+
+---
+
+## Example 1:
+**Input:**
+[["5","3",".",".","7",".",".",".","."]
+,["6",".",".","1","9","5",".",".","."]
+,[".","9","8",".",".",".",".","6","."]
+,["8",".",".",".","6",".",".",".","3"]
+,["4",".",".","8",".","3",".",".","1"]
+,["7",".",".",".","2",".",".",".","6"]
+,[".","6",".",".",".",".","2","8","."]
+,[".",".",".","4","1","9",".",".","5"]
+,[".",".",".",".","8",".",".","7","9"]]
+
+**Output:** `true`
+
+---
+
+## Example 2:
+**Input:**
+
+[["8","3",".",".","7",".",".",".","."]
+,["6",".",".","1","9","5",".",".","."]
+,[".","9","8",".",".",".",".","6","."]
+,["8",".",".",".","6",".",".",".","3"]
+,["4",".",".","8",".","3",".",".","1"]
+,["7",".",".",".","2",".",".",".","6"]
+,[".","6",".",".",".",".","2","8","."]
+,[".",".",".","4","1","9",".",".","5"]
+,[".",".",".",".","8",".",".","7","9"]]
+
+**Output:** `false`  
+**Explanation:** Two `8`s in the top-left 3×3 sub-box → Invalid.
+
+---
+
+## 🚀 Solutions in Multiple Languages
+
+### 1️⃣ Java
+```java
+import java.util.HashSet;
+import java.util.Set;
+
+public class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        for (int i = 0; i < 9; i++) {
+            Set<Character> row = new HashSet<>();
+            Set<Character> col = new HashSet<>();
+            Set<Character> box = new HashSet<>();
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] != '.' && !row.add(board[i][j])) return false;
+                if (board[j][i] != '.' && !col.add(board[j][i])) return false;
+                int r = 3 * (i / 3) + j / 3;
+                int c = 3 * (i % 3) + j % 3;
+                if (board[r][c] != '.' && !box.add(board[r][c])) return false;
+            }
+        }
+        return true;
+    }
+}
+
+2️⃣ Python
+class Solution:
+    def isValidSudoku(self, board):
+        for i in range(9):
+            row, col, box = set(), set(), set()
+            for j in range(9):
+                if board[i][j] != '.' and board[i][j] in row: return False
+                row.add(board[i][j]) if board[i][j] != '.' else None
+                
+                if board[j][i] != '.' and board[j][i] in col: return False
+                col.add(board[j][i]) if board[j][i] != '.' else None
+                
+                r, c = 3 * (i // 3) + j // 3, 3 * (i % 3) + j % 3
+                if board[r][c] != '.' and board[r][c] in box: return False
+                box.add(board[r][c]) if board[r][c] != '.' else None
+        return True
+
+3️⃣ C++
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        for (int i = 0; i < 9; i++) {
+            unordered_set<char> row, col, box;
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] != '.' && !row.insert(board[i][j]).second) return false;
+                if (board[j][i] != '.' && !col.insert(board[j][i]).second) return false;
+                int r = 3 * (i / 3) + j / 3;
+                int c = 3 * (i % 3) + j % 3;
+                if (board[r][c] != '.' && !box.insert(board[r][c]).second) return false;
+            }
+        }
+        return true;
+    }
+};
+
+4️⃣ JavaScript
+var isValidSudoku = function(board) {
+    for (let i = 0; i < 9; i++) {
+        let row = new Set(), col = new Set(), box = new Set();
+        for (let j = 0; j < 9; j++) {
+            if (board[i][j] !== '.' && row.has(board[i][j])) return false;
+            row.add(board[i][j]);
+
+            if (board[j][i] !== '.' && col.has(board[j][i])) return false;
+            col.add(board[j][i]);
+
+            let r = 3 * Math.floor(i / 3) + Math.floor(j / 3);
+            let c = 3 * (i % 3) + (j % 3);
+            if (board[r][c] !== '.' && box.has(board[r][c])) return false;
+            box.add(board[r][c]);
+        }
+    }
+    return true;
+};
+
+5️⃣ Go
+
+func isValidSudoku(board [][]byte) bool {
+    for i := 0; i < 9; i++ {
+        row := make(map[byte]bool)
+        col := make(map[byte]bool)
+        box := make(map[byte]bool)
+        for j := 0; j < 9; j++ {
+            if board[i][j] != '.' {
+                if row[board[i][j]] { return false }
+                row[board[i][j]] = true
+            }
+            if board[j][i] != '.' {
+                if col[board[j][i]] { return false }
+                col[board[j][i]] = true
+            }
+            r := 3*(i/3) + j/3
+            c := 3*(i%3) + j%3
+            if board[r][c] != '.' {
+                if box[board[r][c]] { return false }
+                box[board[r][c]] = true
+            }
+        }
+    }
+    return true
+}
+
+6️⃣ C#
+public class Solution {
+    public bool IsValidSudoku(char[][] board) {
+        for (int i = 0; i < 9; i++) {
+            HashSet<char> row = new HashSet<char>();
+            HashSet<char> col = new HashSet<char>();
+            HashSet<char> box = new HashSet<char>();
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] != '.' && !row.Add(board[i][j])) return false;
+                if (board[j][i] != '.' && !col.Add(board[j][i])) return false;
+                int r = 3 * (i / 3) + j / 3;
+                int c = 3 * (i % 3) + j % 3;
+                if (board[r][c] != '.' && !box.Add(board[r][c])) return false;
+            }
+        }
+        return true;
+    }
+}
+

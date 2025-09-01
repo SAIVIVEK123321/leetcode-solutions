@@ -1,0 +1,80 @@
+# Maximize Average Pass Ratio
+
+You are given a 2D integer array `classes`, where `classes[i] = [passi, totali]` represents a class with `totali` total students and `passi` students guaranteed to pass.  
+Additionally, you have `extraStudents` brilliant students who are guaranteed to pass in whichever class they are assigned.  
+
+Your task is to assign these extra students to maximize the **average pass ratio** across all classes.
+
+---
+
+## Intuition
+Each class has a different **gain** in pass ratio when you add a student.  
+To maximize the final average, we should always give the next student to the class where it increases the pass ratio the most.  
+
+---
+
+## Approach
+1. For each class `(p, t)`, calculate the **gain** if one more student is added:
+
+   \[
+   \text{gain} = \frac{p+1}{t+1} - \frac{p}{t}
+   \]
+
+2. Store all classes in a **max-heap** (priority queue) keyed by this gain.
+3. While `extraStudents > 0`:
+   - Pop the class with the **maximum gain**.
+   - Add one student (`p++`, `t++`).
+   - Recompute the new gain and push the class back into the heap.
+4. After distributing all extra students, compute the final average pass ratio as:
+
+   \[
+   \text{average} = \frac{\sum (p/t)}{\text{number of classes}}
+   \]
+
+---
+
+## Complexity
+- **Time Complexity:**  
+  - Building the heap: `O(n)`  
+  - Each of the `extraStudents` operations requires `O(log n)` for heap operations  
+  - Final summation: `O(n)`  
+  - **Total:** `O((n + extraStudents) log n)`
+
+- **Space Complexity:**  
+  - Storing all classes in a priority queue: `O(n)`
+
+---
+
+## Code (C++)
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    double maxAverageRatio(vector<vector<int>>& classes, int extraStudents) {
+        auto gain = [](int p, int t) {
+            return (double)(p + 1) / (t + 1) - (double)p / t;
+        };
+
+        priority_queue<tuple<double,int,int>> pq;
+        for (auto &c : classes) {
+            pq.push({gain(c[0], c[1]), c[0], c[1]});
+        }
+
+        while (extraStudents--) {
+            auto [g, p, t] = pq.top();
+            pq.pop();
+            p++, t++;
+            pq.push({gain(p, t), p, t});
+        }
+
+        double total = 0.0;
+        while (!pq.empty()) {
+            auto [g, p, t] = pq.top();
+            pq.pop();
+            total += (double)p / t;
+        }
+        return total / classes.size();
+    }
+};

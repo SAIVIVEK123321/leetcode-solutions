@@ -1,0 +1,179 @@
+# 2749. Minimum Operations to Make the Integer Zero
+
+You are given two integers `num1` and `num2`.
+
+In one operation, you can choose integer `i` in the range `[0, 60]` and subtract `2^i + num2` from `num1`.
+
+Return the minimum number of operations needed to make `num1` equal to `0`.  
+If it is impossible, return `-1`.
+
+---
+
+## Problem Statement
+
+- **Input:** Two integers `num1`, `num2`  
+- **Output:** Minimum operations to make `num1 = 0`  
+- **Constraints:**  
+  - `1 <= num1 <= 10^9`  
+  - `-10^9 <= num2 <= 10^9`
+
+---
+
+## Example
+
+### Example 1
+Input: num1 = 3, num2 = -2
+Output: 3
+
+### Example 2
+
+Input: num1 = 5, num2 = 7
+Output: -1
+
+---
+
+## Solutions in Multiple Languages
+
+This repository contains implementations in:
+
+- **C++** (`solution.cpp`)
+- **Java** (`Solution.java`)
+- **Python** (`solution.py`)
+- **JavaScript** (`solution.js`)
+- **C#** (`Solution.cs`)
+
+---
+
+## How to Run
+
+### C++
+```sh
+g++ solution.cpp -o solution
+./solution
+
+✅ C++ (original code, slightly formatted)
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+    int countSetBits(unsigned long long n) {
+        return __builtin_popcountll(n);
+    }
+public:
+    int makeTheIntegerZero(int num1, int num2) {
+        long long curr = num1 - num2;
+        long long x = 1;
+        while (curr > 0) {
+            int b = countSetBits(curr);
+            if (x >= b) {
+                if (x != 1 && curr == 1) return -1;
+                return x;
+            }
+            x++;
+            curr = (long long)num1 - (x * num2);
+        }
+        return -1;
+    }
+};
+
+int main() {
+    Solution s;
+    cout << s.makeTheIntegerZero(3, -2) << endl; // Output: 3
+    cout << s.makeTheIntegerZero(5, 7) << endl;  // Output: -1
+}
+
+✅ Java
+class Solution {
+    public int makeTheIntegerZero(int num1, int num2) {
+        long curr = num1 - num2;
+        long x = 1;
+        while (curr > 0) {
+            int b = Long.bitCount(curr);
+            if (x >= b) {
+                if (x != 1 && curr == 1) return -1;
+                return (int)x;
+            }
+            x++;
+            curr = (long) num1 - (x * num2);
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        Solution s = new Solution();
+        System.out.println(s.makeTheIntegerZero(3, -2)); // Output: 3
+        System.out.println(s.makeTheIntegerZero(5, 7));  // Output: -1
+    }
+}
+
+✅ Python
+class Solution:
+    def makeTheIntegerZero(self, num1: int, num2: int) -> int:
+        curr = num1 - num2
+        x = 1
+        while curr > 0:
+            b = bin(curr).count("1")
+            if x >= b:
+                if x != 1 and curr == 1:
+                    return -1
+                return x
+            x += 1
+            curr = num1 - x * num2
+        return -1
+
+
+# Example usage
+s = Solution()
+print(s.makeTheIntegerZero(3, -2))  # Output: 3
+print(s.makeTheIntegerZero(5, 7))   # Output: -1
+
+✅ JavaScript
+class Solution {
+    makeTheIntegerZero(num1, num2) {
+        let curr = num1 - num2;
+        let x = 1;
+        while (curr > 0) {
+            let b = curr.toString(2).split("1").length - 1;
+            if (x >= b) {
+                if (x !== 1 && curr === 1) return -1;
+                return x;
+            }
+            x++;
+            curr = num1 - x * num2;
+        }
+        return -1;
+    }
+}
+
+const s = new Solution();
+console.log(s.makeTheIntegerZero(3, -2)); // Output: 3
+console.log(s.makeTheIntegerZero(5, 7));  // Output: -1
+
+✅ C#
+using System;
+
+class Solution {
+    public int MakeTheIntegerZero(int num1, int num2) {
+        long curr = num1 - num2;
+        long x = 1;
+        while (curr > 0) {
+            int b = Convert.ToString(curr, 2).Replace("0", "").Length;
+            if (x >= b) {
+                if (x != 1 && curr == 1) return -1;
+                return (int)x;
+            }
+            x++;
+            curr = (long)num1 - (x * num2);
+        }
+        return -1;
+    }
+}
+
+class Program {
+    static void Main(string[] args) {
+        Solution s = new Solution();
+        Console.WriteLine(s.MakeTheIntegerZero(3, -2)); // Output: 3
+        Console.WriteLine(s.MakeTheIntegerZero(5, 7));  // Output: -1
+    }
+}
+

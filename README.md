@@ -37,18 +37,6 @@ ProblemNumber.Problem_Title/
 
 ---
 
-## 📊 Progress Tracker
-| #    | Problem Title                                  | Difficulty | Solutions |
-|------|-----------------------------------------------|------------|-----------|
-| 36   | Valid Sudoku                                  | Medium     | [Link](./36.Valid_Sudoku) |
-| 37   | Sudoku Solver                                 | Hard       | [Link](./37.Sudoku_Solver) |
-| 1792 | Maximum Average Pass Ratio                    | Medium     | [Link](./1792.Maximum_Average_Pass_Ratio) |
-| 3000 | Maximum Area of Longest Diagonal Rectangle    | Easy       | [Link](./3000.Maximum_Area_of_Longest_Diagonal_Rectangle) |
-| 3025 | Find the Number of Ways to Place People I     | Medium     | [Link](./3025.Find_the_Number_of_Ways_to_Place_People_I) |
-| 3446 | Sort Matrix by Diagonals                      | Medium     | [Link](./3446.Sort_Matrix_by_Diagonals) |
-| 3459 | Length of Longest V-Shaped Diagonal Segment   | Hard       | [Link](./3459.Length_of_Longest_V-Shaped_Diagonal_Segment) |
-
----
 
 ## 🎯 Goals
 - ✅ Solve **1–2 problems daily**  

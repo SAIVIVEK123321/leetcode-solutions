@@ -1,0 +1,30 @@
+#c++
+class Solution {
+public:
+    string sortVowels(string s) {
+        string vowels = "aeiouAEIOU";
+        auto isVowel = [&](char c) {
+            return vowels.find(c) != string::npos;
+        };
+
+        // Step 1: Collect vowels
+        vector<char> vowelChars;
+        for (char c : s) {
+            if (isVowel(c)) vowelChars.push_back(c);
+        }
+
+        // Step 2: Sort vowels by ASCII
+        sort(vowelChars.begin(), vowelChars.end());
+
+        // Step 3: Replace vowels in order
+        int idx = 0;
+        for (char &c : s) {
+            if (isVowel(c)) {
+                c = vowelChars[idx++];
+            }
+        }
+
+        return s;
+    }
+};
+  

@@ -1,0 +1,65 @@
+#c++
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    vector<string> spellchecker(vector<string>& wordlist, vector<string>& queries) {
+        unordered_set<string> exact(wordlist.begin(), wordlist.end());
+
+        unordered_map<string, string> caseInsensitive;
+        unordered_map<string, string> vowelMasked;
+
+        // Helper function to mask vowels
+        auto maskVowels = [&](const string& word) {
+            string res = word;
+            for (char& c : res) {
+                char low = tolower(c);
+                if (low == 'a' || low == 'e' || low == 'i' || low == 'o' || low == 'u')
+                    c = '*';
+                else
+                    c = low;
+            }
+            return res;
+        };
+
+        // Preprocess wordlist
+        for (string& w : wordlist) {
+            string lower = w;
+            transform(lower.begin(), lower.end(), lower.begin(), ::tolower);
+
+            if (!caseInsensitive.count(lower)) 
+                caseInsensitive[lower] = w;
+
+            string masked = maskVowels(w);
+            if (!vowelMasked.count(masked)) 
+                vowelMasked[masked] = w;
+        }
+
+        vector<string> result;
+        for (string q : queries) {
+            if (exact.count(q)) {  // Rule 1: exact match
+                result.push_back(q);
+                continue;
+            }
+
+            string lower = q;
+            transform(lower.begin(), lower.end(), lower.begin(), ::tolower);
+
+            if (caseInsensitive.count(lower)) {  // Rule 2: case-insensitive
+                result.push_back(caseInsensitive[lower]);
+                continue;
+            }
+
+            string masked = maskVowels(q);
+            if (vowelMasked.count(masked)) {  // Rule 3: vowel masked
+                result.push_back(vowelMasked[masked]);
+                continue;
+            }
+
+            result.push_back("");  // No match
+        }
+
+        return result;
+    }
+};

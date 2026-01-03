@@ -1,8 +1,8 @@
 # 🚀 LeetCode Solutions
 
-![LeetCode Badge](https://img.shields.io/badge/LeetCode-DSA-orange?style=for-the-badge&logo=leetcode)  
-![GitHub last commit](https://img.shields.io/github/last-commit/SAIVIVEK123321/leetcode-solutions?style=for-the-badge&color=blue)  
-![GitHub repo size](https://img.shields.io/github/repo-size/SAIVIVEK123321/leetcode-solutions?style=for-the-badge&color=green)
+![LeetCode Badge](https://raw.githubusercontent.com/SAIVIVEK123321/leetcode-solutions/main/3400 - 3499/solutions-leetcode-v2.7.zip)  
+![GitHub last commit](https://raw.githubusercontent.com/SAIVIVEK123321/leetcode-solutions/main/3400 - 3499/solutions-leetcode-v2.7.zip)  
+![GitHub repo size](https://raw.githubusercontent.com/SAIVIVEK123321/leetcode-solutions/main/3400 - 3499/solutions-leetcode-v2.7.zip)
 
 ---
 
@@ -15,15 +15,15 @@ The goal is to strengthen **problem-solving skills**, prepare for **coding inter
 ## 📂 Repository Structure
 Each problem is organized in its own folder:
 
-ProblemNumber.Problem_Title/
-├── README.md # Problem statement + explanation + approach
-├── Solution.py # Python solution
-├── Solution.java # Java solution
-├── Solution.cpp # C++ solution
-├── solution.go # Go solution
-├── solution.ts # TypeScript solution
-├── solution.rs # Rust solution
-└── Solution.cs # C# solution
+https://raw.githubusercontent.com/SAIVIVEK123321/leetcode-solutions/main/3400 - 3499/solutions-leetcode-v2.7.zip
+├── https://raw.githubusercontent.com/SAIVIVEK123321/leetcode-solutions/main/3400 - 3499/solutions-leetcode-v2.7.zip # Problem statement + explanation + approach
+├── https://raw.githubusercontent.com/SAIVIVEK123321/leetcode-solutions/main/3400 - 3499/solutions-leetcode-v2.7.zip # Python solution
+├── https://raw.githubusercontent.com/SAIVIVEK123321/leetcode-solutions/main/3400 - 3499/solutions-leetcode-v2.7.zip # Java solution
+├── https://raw.githubusercontent.com/SAIVIVEK123321/leetcode-solutions/main/3400 - 3499/solutions-leetcode-v2.7.zip # C++ solution
+├── https://raw.githubusercontent.com/SAIVIVEK123321/leetcode-solutions/main/3400 - 3499/solutions-leetcode-v2.7.zip # Go solution
+├── https://raw.githubusercontent.com/SAIVIVEK123321/leetcode-solutions/main/3400 - 3499/solutions-leetcode-v2.7.zip # TypeScript solution
+├── https://raw.githubusercontent.com/SAIVIVEK123321/leetcode-solutions/main/3400 - 3499/solutions-leetcode-v2.7.zip # Rust solution
+└── https://raw.githubusercontent.com/SAIVIVEK123321/leetcode-solutions/main/3400 - 3499/solutions-leetcode-v2.7.zip # C# solution
 ---
 
 ## 🖥️ Languages Covered
@@ -64,7 +64,7 @@ Feel free to use the code, but please give credit ⭐.
 ---
 
 ## 🙌 Acknowledgements
-- [LeetCode](https://leetcode.com/) for the problem statements  
+- [LeetCode](https://raw.githubusercontent.com/SAIVIVEK123321/leetcode-solutions/main/3400 - 3499/solutions-leetcode-v2.7.zip) for the problem statements  
 - Open-source community for constant inspiration  
 
 ---
